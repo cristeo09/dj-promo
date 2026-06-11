@@ -1921,9 +1921,20 @@
 
             // Back to top button
             const backToTopButton = document.getElementById('back-to-top');
+            let scrollTimeout;
+            
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 300) {
                     backToTopButton.classList.add('show');
+                    
+                    if (scrollTimeout) clearTimeout(scrollTimeout);
+                    
+                    scrollTimeout = setTimeout(() => {
+                        const isAtBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50;
+                        if (!isAtBottom) {
+                            backToTopButton.classList.remove('show');
+                        }
+                    }, 3000);
                 } else {
                     backToTopButton.classList.remove('show');
                 }
