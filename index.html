@@ -799,6 +799,13 @@
             margin: 0;
         }
 
+        /* Hide volume on iOS devices since programmatic volume control is blocked */
+        @supports (-webkit-touch-callout: none) {
+            .volume-wrapper {
+                display: none !important;
+            }
+        }
+
         .mute-btn svg {
             width: 24px;
             fill: var(--text-muted);
